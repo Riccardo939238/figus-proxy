@@ -18,8 +18,17 @@ app.get('/api/product', async (req, res) => {
 
     const name = $('h1.product_title').text().trim();
     const image = $('.woocommerce-product-gallery__image img').attr('src');
-    const price = $('.price').text().trim();
-    const description = $('.woocommerce-Tabs-panel--description').text().trim();
+
+    // Prende solo il primo prezzo valido
+    const price = $('.woocommerce-Price-amount').first().text().trim();
+
+    // Migliora la descrizione: evita vuoti, controlla presenza in tab attivi o fallback
+    let description = $('.woocommerce-Tabs-panel--description').text().trim();
+    if (!description) {
+      description = $('.woocommerce-product-details__short-description').text().trim();
+    }
+
+    // Prende solo la disponibilità visibile
     const availability = $('p.stock').text().trim();
 
     res.json({ name, image, price, description, availability });
