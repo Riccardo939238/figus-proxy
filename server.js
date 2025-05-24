@@ -20,7 +20,9 @@ app.get('/api/product', async (req, res) => {
     const image = $('.woocommerce-product-gallery__image img').attr('src');
 
     // Prende solo il primo prezzo valido
-const price = $('.summary .price .woocommerce-Price-amount bdi').first().text().trim();
+const currencySymbol = $('.summary .price .woocommerce-Price-currencySymbol').first();
+const price = currencySymbol.parent().text().replace(/\\s+/g, '').trim(); // rimuove spazi e restituisce "€274,00"
+
 
 
     // Migliora la descrizione: evita vuoti, controlla presenza in tab attivi o fallback
