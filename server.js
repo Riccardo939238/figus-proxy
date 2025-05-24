@@ -20,7 +20,8 @@ app.get('/api/product', async (req, res) => {
     const image = $('.woocommerce-product-gallery__image img').attr('src');
 
     // Prende solo il primo prezzo valido
-    const price = $('.woocommerce-Price-amount').first().text().trim();
+const price = $('.summary .price .woocommerce-Price-amount bdi').first().text().trim();
+
 
     // Migliora la descrizione: evita vuoti, controlla presenza in tab attivi o fallback
     let description = $('.woocommerce-Tabs-panel--description').text().trim();
