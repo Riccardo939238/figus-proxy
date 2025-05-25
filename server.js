@@ -20,7 +20,8 @@ app.get('/api/product', async (req, res) => {
     const image = $('.woocommerce-product-gallery__image img').attr('src');
 
     // Prende solo il primo prezzo valido
-const price = $('.wcpbc-price .woocommerce-Price-amount bdi').first().text().trim();
+const price = $('span.wcpbc-price span.woocommerce-Price-amount bdi').first().text().trim();
+
 
 
 
