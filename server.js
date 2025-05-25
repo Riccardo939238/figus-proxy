@@ -20,7 +20,11 @@ app.get('/api/product', async (req, res) => {
     const image = $('.woocommerce-product-gallery__image img').attr('src');
 
     // Prende solo il primo prezzo valido
-const price = $('.summary span.wcpbc-price span.woocommerce-Price-amount').first().text().trim();
+const response = await fetch(productUrl, {
+  headers: {
+    'cookie': 'woocommerce_multicurrency_forced_country=IT'
+  }
+});
 
 
 
